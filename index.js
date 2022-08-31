@@ -13,8 +13,11 @@ app.get('/products', async (req, res) => {
     return res.send(data)
 })
 
-app.get('/randomProducts', (req, res) => {
-    res.send('<h1>Random Products</h1>')
+app.get('/randomProducts', async (req, res) => {
+    // const productRandom = data.Match.random()
+    let productRandom = Math.floor(Math.random() * 3 + 1)
+    const data = await DB.getById(productRandom);
+    return res.send(data)
 })
 
 const server = app.listen(8080, () => {
